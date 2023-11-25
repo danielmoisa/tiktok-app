@@ -2,26 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
+.top-shadow {
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    180deg,
+    rgba(0, 0, 0, 0) 0.4,
+    rgba(0, 0, 0, 0%) 100%
+  );
+}
+
+.bottom-shadow {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+
+video {
+  max-width: 100%;
+}
+
+.error-message,
+.success-message {
+  opacity: 0;
+}
+
+input:invalid:focus + .error-message {
+  opacity: 100;
+}
+
+.scroll-container {
+  scroll-snap-type: mandatory;
+  scroll-snap-type: y mandatory;
+}
+
+.scroll-child:not(:first-child) {
+  scroll-snap-align: start;
 }

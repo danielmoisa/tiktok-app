@@ -1,3 +1,3 @@
-import PocketBase from "pocketbase";
+import PocketBase from 'pocketbase'
 
-export const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE);
+export const pb = new PocketBase(process.env.NEXT_PUBLIC_POCKETBASE)
