@@ -1,11 +1,14 @@
 'use client'
-import { useRouter } from 'next/navigation'
-import { useReducer, useState } from 'react'
-import { pb } from '../../utils/pocketbase'
-import useSWR, { useSWRConfig } from 'swr'
-import { api_Url } from 'utils/consts'
+
 import { HeartFilledIcon, HeartIcon } from '@radix-ui/react-icons'
+import { useReducer, useState } from 'react'
+import useSWR, { useSWRConfig } from 'swr'
+
 import Link from 'next/link'
+import { api_Url } from 'utils/consts'
+import { pb } from '../../utils/pocketbase'
+import { useRouter } from 'next/navigation'
+
 type ILikdButton = {
   liked: Boolean
   postId: string
@@ -76,9 +79,7 @@ function LikeButton({ liked, postId, id, totalLikes }: ILikdButton) {
           <HeartIcon width={24} height={24} />
         </button>
       )}
-      <Link href={`/posts/${postId}/likes`}>
-        <p>{likes} Likes </p>
-      </Link>
+
     </div>
   )
 }

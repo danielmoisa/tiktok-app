@@ -1,15 +1,19 @@
 'use client'
 
-import React from 'react'
-import { pb } from '../../utils/pocketbase'
-import { useState } from 'react'
+import { CommentList, LikeList, Post } from 'types'
+
+import { HeartIcon } from '@radix-ui/react-icons'
+import Image from 'next/image'
 import LikeButton from './LikeButton'
-import { api_Url } from 'utils/consts'
-import useSWR from 'swr'
+import Link from 'next/link'
 import Loading from 'components/UI/Loading'
 import { PostFooterSkeleton } from 'components/UI'
-import { CommentList, LikeList, Post } from 'types'
-import Link from 'next/link'
+import React from 'react'
+import { api_Url } from 'utils/consts'
+import { pb } from '../../utils/pocketbase'
+import useSWR from 'swr'
+import { useState } from 'react'
+
 type IPostFooter = {
   post: Post
   id: string
@@ -45,20 +49,30 @@ function PostFooter({ post, id }: IPostFooter) {
 
   const liked = isLiked.data.totalItems > 0 ? true : false
   return (
-    <div className="absolute bottom-0 w-full p-6 pb-12 text-white bg-gradient-to-t from-custom-shadow sm:pb-6 ">
-      <Link href={`/posts/${post.id}`}>
-        <p className="py-4">{post.caption}</p>
-      </Link>
-      <div className="flex gap-4 items-center">
+    <div className="flex flex-col justify-end p-2 text-black bg-gradient-to-t from-custom-shadow">
+      <div className="flex flex-col gap-4 items-center">
         <LikeButton
           totalLikes={likes.data.totalItems}
           liked={liked}
           postId={post.id}
           id={id}
         />
-        <Link href={`/posts/${post.id}/comments`}>
-          <p>{comments.data.totalItems} Comments</p>
-        </Link>
+        <div className="flex gap-1 p-3 px-4 pr-5 rounded-full bg-zinc-200 bg-opacity-30 backdrop-blur-sm">
+          <button >
+            <Image src="/comments.svg" width={24} height={24} alt="comments icon" />
+          </button>
+        </div>
+        <div className="flex gap-1 p-3 px-4 pr-5 rounded-full bg-zinc-200 bg-opacity-30 backdrop-blur-sm">
+          <button >
+            <Image src="/fav.svg" width={24} height={24} alt="comments icon" />
+          </button>
+        </div>
+        <div className="flex gap-1 p-3 px-4 pr-5 rounded-full bg-zinc-200 bg-opacity-30 backdrop-blur-sm">
+          <button >
+            <Image src="/share.svg" width={24} height={24} alt="comments icon" />
+          </button>
+        </div>
+
       </div>
     </div>
   )

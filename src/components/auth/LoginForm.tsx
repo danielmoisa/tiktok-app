@@ -1,9 +1,11 @@
 'use client'
+
+import { Alert, Input, SubmitButton } from 'components/UI'
 import React, { useState } from 'react'
+
+import { login } from 'utils/auth'
 import { pb } from 'utils/pocketbase'
 import { useRouter } from 'next/navigation'
-import { login } from 'utils/auth'
-import { Input, SubmitButton, Alert } from 'components/UI'
 
 function LoginForm() {
   const [password, setPassword] = useState('')
@@ -19,13 +21,11 @@ function LoginForm() {
       const result = await pb
         .collection('users')
         .authWithPassword(email, password)
-      console.log(result)
       await login(email, password)
       setStatus('Logged in successfully ✅')
       router.refresh()
       router.replace('/')
     } catch (e) {
-      console.log(e)
       setStatus('Unable to Login 🚫')
     }
     setLoading(false)

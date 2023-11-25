@@ -19,7 +19,7 @@ function InfinitePostsPage({
         return (
           <div
             key={post.id}
-            className="max-w-[375px] mx-auto w-full h-screen flex flex-col justify-center snap-start sm:pt-20"
+            className="max-w-[450px] mx-auto w-full h-screen flex flex-col justify-center snap-start"
           >
             <PostCard post={post} />
           </div>
